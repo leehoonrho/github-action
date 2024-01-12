@@ -15,16 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          ref: main
-      - name: Set up tools
-        run: |
-          echo $(pwd) >> $GITHUB_PATH
-          wget -qO $(pwd)/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
-          wget -qO $(pwd)/mdbook.tar.gz https://github.com/rust-lang/mdBook/releases/download/v0.4.27/mdbook-v0.4.27-x86_64-unknown-linux-gnu.tar.gz
-          wget -qO $(pwd)/mdbook-admonish.tar.gz https://github.com/tommilligan/mdbook-admonish/releases/download/v1.8.0/mdbook-admonish-v1.8.0-x86_64-unknown-linux-gnu.tar.gz
-          tar xvzf mdbook.tar.gz
-          tar xvzf mdbook-admonish.tar.gz
-          chmod a+x $(pwd)/yq
+      - name: Echo
+        run: echo ${{ inputs.release-type }}
+      - name: Echo conditionally
+        if: ${{ inputs.release-type == 'TEST' }}
+        run: echo "${{ inputs.release-type }} option"
+      - name: Echo conditionally
+        if: ${{ inputs.release-type == 'RELEASE' }}
+        run: echo "${{ inputs.release-type }} option"
