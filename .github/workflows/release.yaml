@@ -7,8 +7,8 @@ on:
         type: choice
         description: 'Select release type'
         options:
-          - release
-          - test
+          - TEST
+          - RELEASE
 
 jobs:
   release:
