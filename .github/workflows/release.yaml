@@ -2,7 +2,13 @@ name: Release
 
 on:
   workflow_dispatch:
-
+    inputs:
+      release-type:
+        type: choice
+        description: 'Select release type'
+        options:
+          - release
+          - test
 
 jobs:
   release:
