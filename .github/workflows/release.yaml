@@ -23,3 +23,12 @@ jobs:
       - name: Echo conditionally
         if: ${{ inputs.release-type == 'RELEASE' }}
         run: echo "${{ inputs.release-type }} option"
+
+  job-test:
+    needs: release
+    runs-on: ubuntu-latest
+    if: ${{ inputs.release-type == 'RELEASE' }}
+
+    steps:
+      - name: Second job test
+        run: echo ${{ inputs.release-type }}
