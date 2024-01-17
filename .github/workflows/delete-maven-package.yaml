@@ -12,11 +12,11 @@ jobs:
 
     steps:
       - name: Delete maven packages
-        uses: meta205/actions-delete-package@v1
+        uses: zionex/actions-delete-packages@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
         with:
-          package-name: t3series-wingui
+          package-name: t3series-common,t3series-parent,t3series-dpserver,t3series-mp,t3series-mpserver,t3series-fp,t3series-fpserver,t3series-wingui
           package-version: ${{ inputs.release-version }}
           package-type: maven
           owner: zionex
