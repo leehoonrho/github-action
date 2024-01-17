@@ -1,0 +1,22 @@
+name: Delete maven package
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-version:
+        description: 'Enter release version want to delete'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Delete maven packages
+        uses: meta205/actions-delete-package@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+        with:
+          package-name: t3series-wingui
+          package-version: ${{ inputs.release-version }}
+          package-type: maven
+          owner: zionex

@@ -1,4 +1,4 @@
-name: Test
+name: Delete npm package
 
 on:
   workflow_dispatch:
@@ -16,16 +16,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
         with:
-          package-name: wingui
+          package-name: wingui,wingui-core
           package-version: ${{ inputs.release-version }}
           package-type: npm
-          owner: zionex
-      - name: Delete maven packages
-        uses: meta205/actions-delete-package@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-        with:
-          package-name: t3series-wingui
-          package-version: ${{ inputs.release-version }}
-          package-type: maven
           owner: zionex
