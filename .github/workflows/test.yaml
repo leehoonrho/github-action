@@ -11,11 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Delete packages
+      - name: Delete maven packages
         uses: meta205/actions-delete-package@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           package-name: t3series-bfserver,t3series-common,t3series-dpserver,t3series-fp,t3series-fpserver,t3series-mp,t3series-mpserver,t3series-wingui
           package-version: ${{ core.getInput('release-version') }}
           package-type: maven
+          owner: ZIONEX
+      - name: Delete npm packages
+        uses: meta205/actions-delete-package@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          package-name: wingui,wingui-core
+          package-version: ${{ core.getInput('release-version') }}
+          package-type: npm
           owner: ZIONEX
