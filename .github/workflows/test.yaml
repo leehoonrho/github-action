@@ -1,0 +1,21 @@
+name: Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-version:
+        description: 'Enter release version want to delete'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Delete packages
+        uses: meta205/actions-delete-package@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          package-name: t3series-bfserver,t3series-common,t3series-dpserver,t3series-fp,t3series-fpserver,t3series-mp,t3series-mpserver,t3series-wingui
+          package-version: ${{ core.getInput('release-version') }}
+          package-type: maven
+          owner: ZIONEX
