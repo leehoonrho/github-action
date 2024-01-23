@@ -1,0 +1,18 @@
+name: Sandbox
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set output
+        id: set-output
+        run: echo "project-version=23.3.0">> "$GITHUB_OUTPUT"
+      - name: Use output
+        id: use-output
+        env:
+          PROJECT_VERSION: ${{ steps.set-output.outputs.project-version }}
+        run: echo "v$PROJECT_VERSION-SNAPSHOT"
