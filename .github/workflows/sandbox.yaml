@@ -16,6 +16,5 @@ jobs:
         env:
           PROJECT_VERSION: ${{ steps.set-output.outputs.project-version }}
         run: |
-          echo "v${{ PROJECT_VERSION }}-SNAPSHOT"
           echo "v$PROJECT_VERSION-SNAPSHOT"
           echo "v${{ env.PROJECT_VERSION }}-SNAPSHOT"
