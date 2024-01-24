@@ -32,10 +32,10 @@ jobs:
         id: WingUI
         run: echo $WingUI
       - name: Run if MP is true
-        if: ${{ inputs.MP == 'true' }}
+        if: ${{ inputs.MP }}
         id: MP
         run: echo $MP
       - name: Run if BaseServer is true
-        if: ${{ inputs.BaseServer == 'true' }}
+        if: ${{ inputs.BaseServer }}
         id: BaseServer
         run: echo $BaseServer
