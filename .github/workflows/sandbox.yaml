@@ -2,21 +2,22 @@ name: Sandbox
 
 on:
   workflow_dispatch:
-    WingUI:
-      type: boolean
-      required: false
-      description: 'WingUI'
-      default: true
-    MP:
-      type: boolean
-      required: false
-      description: 'MP'
-      default: true
-    BaseServer:
-      type: boolean
-      required: false
-      description: 'BaseServer'
-      default: true
+    inputs:
+      WingUI:
+        type: boolean
+        required: false
+        description: 'WingUI'
+        default: true
+      MP:
+        type: boolean
+        required: false
+        description: 'MP'
+        default: true
+      BaseServer:
+        type: boolean
+        required: false
+        description: 'BaseServer'
+        default: true
 
 jobs:
   release:
