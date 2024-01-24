@@ -12,12 +12,12 @@ on:
         type: boolean
         required: false
         description: 'MP'
-        default: true
+        default: false
       BaseServer:
         type: boolean
         required: false
         description: 'BaseServer'
-        default: true
+        default: false
 
 jobs:
   release:
@@ -28,7 +28,7 @@ jobs:
         id: Check
         run: echo ${{ inputs.WingUI }} ${{ inputs.MP }} ${{ inputs.BaseServer }}
       - name: Run if WingUI is true
-        if: ${{ inputs.WingUI == true }}
+        if: ${{ inputs.WingUI }}
         id: WingUI
         run: echo $WingUI
       - name: Run if MP is true
