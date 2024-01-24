@@ -2,19 +2,36 @@ name: Sandbox
 
 on:
   workflow_dispatch:
+    WingUI:
+      type: boolean
+      required: false
+      description: 'WingUI'
+      default: true
+    MP:
+      type: boolean
+      required: false
+      description: 'MP'
+      default: true
+    BaseServer:
+      type: boolean
+      required: false
+      description: 'BaseServer'
+      default: true
 
 jobs:
   release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set output
-        id: set-output
-        run: echo "project-version=23.3.0">> "$GITHUB_OUTPUT"
-      - name: Use output
+      - name: Run if WingUI is true
+        if: ${{ inputs.WingUI == 'true' }}
         id: use-output
-        env:
-          PROJECT_VERSION: ${{ steps.set-output.outputs.project-version }}
-        run: |
-          echo "v$PROJECT_VERSION-SNAPSHOT"
-          echo "v${{ env.PROJECT_VERSION }}-SNAPSHOT"
+        run: echo $WingUI
+      - name: Run if MP is true
+        if: ${{ inputs.MP == 'true' }}
+        id: use-output
+        run: echo $MP
+      - name: Run if BaseServer is true
+        if: ${{ inputs.BaseServer == 'true' }}
+        id: use-output
+        run: echo $BaseServer
