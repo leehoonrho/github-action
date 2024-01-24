@@ -24,6 +24,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check inputs
+        id: Check
+        run: echo ${{ inputs.WingUI }} ${{ inputs.MP }} ${{ inputs.BaseServer }}
       - name: Run if WingUI is true
         if: ${{ inputs.WingUI == 'true' }}
         id: WingUI
