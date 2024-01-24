@@ -26,13 +26,13 @@ jobs:
     steps:
       - name: Run if WingUI is true
         if: ${{ inputs.WingUI == 'true' }}
-        id: use-output
+        id: WingUI
         run: echo $WingUI
       - name: Run if MP is true
         if: ${{ inputs.MP == 'true' }}
-        id: use-output
+        id: MP
         run: echo $MP
       - name: Run if BaseServer is true
         if: ${{ inputs.BaseServer == 'true' }}
-        id: use-output
+        id: BaseServer
         run: echo $BaseServer
