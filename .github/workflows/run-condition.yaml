@@ -1,0 +1,41 @@
+name: Run condition
+
+on:
+  workflow_dispatch:
+    inputs:
+      WingUI:
+        type: boolean
+        required: false
+        description: 'WingUI'
+        default: true
+      MP:
+        type: boolean
+        required: false
+        description: 'MP'
+        default: false
+      BaseServer:
+        type: boolean
+        required: false
+        description: 'BaseServer'
+        default: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check inputs
+        id: Check
+        run: echo ${{ inputs.WingUI }} ${{ inputs.MP }} ${{ inputs.BaseServer }}
+      - name: Run if WingUI is true
+        if: ${{ inputs.WingUI }}
+        id: WingUI
+        run: echo $WingUI
+      - name: Run if MP is true
+        if: ${{ inputs.MP }}
+        id: MP
+        run: echo $MP
+      - name: Run if BaseServer is true
+        if: ${{ inputs.BaseServer }}
+        id: BaseServer
+        run: echo $BaseServer
