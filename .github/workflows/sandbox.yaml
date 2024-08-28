@@ -26,16 +26,8 @@ jobs:
     steps:
       - name: Check inputs
         id: Check
-        run: echo ${{ inputs.WingUI }} ${{ inputs.MP }} ${{ inputs.BaseServer }}
-      - name: Run if WingUI is true
-        if: ${{ inputs.WingUI }}
-        id: WingUI
-        run: echo $WingUI
-      - name: Run if MP is true
-        if: ${{ inputs.MP }}
-        id: MP
-        run: echo $MP
-      - name: Run if BaseServer is true
-        if: ${{ inputs.BaseServer }}
-        id: BaseServer
-        run: echo $BaseServer
+        run: |
+          echo ${{ inputs.WingUI }} ${{ inputs.MP }} ${{ inputs.BaseServer }}
+          echo ${{ inputs.WingUI && 'WingUI' }}
+          echo ${{ inputs.MP && 'MP' }}
+          echo ${{ inputs.BaseServer && 'BaseServer' }}
