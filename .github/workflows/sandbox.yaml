@@ -31,3 +31,4 @@ jobs:
           echo ${{ inputs.WingUI && 'WingUI' }}
           echo ${{ inputs.MP && 'MP' }}
           echo ${{ inputs.BaseServer && 'BaseServer' }}
+          echo ${{ 'prod'^^ }}
