@@ -32,4 +32,6 @@ jobs:
           echo ${{ inputs.MP && 'MP' }}
           echo ${{ inputs.BaseServer && 'BaseServer' }}
           TEST="test"
+          echo $TEST
           TEST="${TEST^^}"
+          echo $TEST
