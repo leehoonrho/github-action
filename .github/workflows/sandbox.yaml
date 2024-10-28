@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check
-        run: echo 1234
+        run: exit 1
   exception:
     if: ${{ failure() }}
     needs: release
