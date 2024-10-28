@@ -22,16 +22,21 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check inputs
-        id: Check
-        run: |
-          echo ${{ inputs.WingUI }} ${{ inputs.MP }} ${{ inputs.BaseServer }}
-          echo ${{ inputs.WingUI && 'WingUI' }}
-          echo ${{ inputs.MP && 'MP' }}
-          echo ${{ inputs.BaseServer && 'BaseServer' }}
-          TEST="test"
-          echo $TEST
-          TEST="${TEST^^}"
-          echo $TEST
+      - name: Check
+        run: echo 1234
+  exception:
+    if: ${{ failure() }}
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check
+        run: echo 1234
+  notification:
+    if: ${{ always() }}
+    needs: [release, exception]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check
+        run: echo 1234
+          
