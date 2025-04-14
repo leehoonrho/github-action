@@ -2,41 +2,21 @@ name: Sandbox
 
 on:
   workflow_dispatch:
-    inputs:
-      WingUI:
-        type: boolean
-        required: false
-        description: 'WingUI'
-        default: true
-      MP:
-        type: boolean
-        required: false
-        description: 'MP'
-        default: false
-      BaseServer:
-        type: boolean
-        required: false
-        description: 'BaseServer'
-        default: false
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Check
-        run: exit 1
-  exception:
-    if: ${{ failure() }}
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check
-        run: echo 1234
-  notification:
-    if: ${{ always() }}
-    needs: [release, exception]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check
-        run: echo 1234
-          
+      - name: Send mail
+        if: ${{ inputs.release-type == 'RELEASE' }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.ZIONEX_CI_MAIL_USERNAME }}
+          password: ${{ secrets.ZIONEX_CI_MAIL_PASSWORD }}
+          subject: "GitHub Action Sending Mail Test"
+          to: hoonrho_lee@zionex.com
+          from: Zionex Release
+          body: This is test
