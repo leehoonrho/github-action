@@ -54,7 +54,7 @@ jobs:
           kr=$(yq ".memory.kr.${{ inputs.ui-env }}" application.yaml)
           echo $kr
           echo "kr=$kr" >> $GITHUB_OUTPUT
-          vn=$(yq ".memory.vn.${{ inputs.ui-env }}"'" application.yaml)
+          vn=$(yq ".memory.vn.${{ inputs.ui-env }}" application.yaml)
           echo $vn
           echo "vn=$vn" >> $GITHUB_OUTPUT
         id: memory2
