@@ -46,3 +46,33 @@ jobs:
         run: |
           echo ${{ steps.memory.outputs.kr }}
           echo ${{ steps.memory.outputs.vn }}
+      - name: Create yajsw files - KR
+        uses: zionex/actions-yajsw@v1
+        with:
+          dist-path: './release'
+          service-name: 'TEST'
+          java-app-jar-file: 'TEST.jar'
+          java-max-memory: ${{ steps.memory.outputs.kr }}
+      - name: Check yq result
+        run: |
+          cd release
+          ls -al
+          cd wrapper
+          ls -al
+          cd conf
+          echo wrapper.conf
+      - name: Create yajsw files - VN
+        uses: zionex/actions-yajsw@v1
+        with:
+          dist-path: './release'
+          service-name: 'TEST'
+          java-app-jar-file: 'TEST.jar'
+          java-max-memory: ${{ steps.memory.outputs.vn }}
+      - name: Check yq result
+        run: |
+          cd release
+          ls -al
+          cd wrapper
+          ls -al
+          cd conf
+          echo wrapper.conf
