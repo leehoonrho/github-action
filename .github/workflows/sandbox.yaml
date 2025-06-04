@@ -39,8 +39,6 @@ jobs:
       - name: Set mp server max memory
         working-directory: ${{ env.working-directory-config }}
         run:
-          echo "kr=$(yq '.memory.kr.${{ inputs.ui-env }}' application.yaml)"
-          echo "vn=$(yq '.memory.vn.${{ inputs.ui-env }}' application.yaml)"
           echo "kr=$(yq '.memory.kr.${{ inputs.ui-env }}' application.yaml)" >> $GITHUB_OUTPUT
           echo "vn=$(yq '.memory.vn.${{ inputs.ui-env }}' application.yaml)" >> $GITHUB_OUTPUT
         id: memory
@@ -48,17 +46,3 @@ jobs:
         run: |
           echo ${{ steps.memory.outputs.kr }}
           echo ${{ steps.memory.outputs.vn }}
-      - name: Set mp server max memory
-        working-directory: ${{ env.working-directory-config }}
-        run:
-          "kr=$(yq '.memory.kr.${{ inputs.ui-env }}' application.yaml)"
-          echo $kr
-          echo "kr=$kr" >> $GITHUB_OUTPUT
-          "vn=$(yq '.memory.vn.${{ inputs.ui-env }}' application.yaml)"
-          echo $vn
-          echo "vn=$vn" >> $GITHUB_OUTPUT
-        id: memory2
-      - name: Check yq result
-        run: |
-          echo ${{ steps.memory2.outputs.kr }}
-          echo ${{ steps.memory2.outputs.vn }}
