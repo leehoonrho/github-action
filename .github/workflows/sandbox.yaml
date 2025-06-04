@@ -60,7 +60,7 @@ jobs:
           cd wrapper
           ls -al
           cd conf
-          echo wrapper.conf
+          cat wrapper.conf
       - name: Create yajsw files - VN
         uses: zionex/actions-yajsw@v1
         with:
@@ -75,4 +75,4 @@ jobs:
           cd wrapper
           ls -al
           cd conf
-          echo wrapper.conf
+          cat wrapper.conf
