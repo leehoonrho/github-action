@@ -38,7 +38,7 @@ jobs:
           chmod a+x $HOME/.local/bin/yq
       - name: Set mp server max memory
         working-directory: ${{ env.working-directory-config }}
-        run: :
+        run: |
           echo "kr=$(yq '.memory.kr.${{ inputs.ui-env }}' application.yaml)" >> $GITHUB_OUTPUT
           echo "vn=$(yq '.memory.vn.${{ inputs.ui-env }}' application.yaml)" >> $GITHUB_OUTPUT
         id: memory
