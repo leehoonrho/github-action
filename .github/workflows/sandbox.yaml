@@ -44,5 +44,5 @@ jobs:
         id: memory
       - name: Check yq result
         run: |
-          echo ${{ steps.memory.outputs.kr }}
-          echo ${{ steps.memory.outputs.vn }}
+          ${{ steps.memory.outputs.kr }}
+          ${{ steps.memory.outputs.vn }}
