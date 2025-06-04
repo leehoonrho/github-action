@@ -2,20 +2,45 @@ name: Sandbox
 
 on:
   workflow_dispatch:
+    inputs:
+      ui-corp-kr:
+        type: boolean
+        required: false
+        description: 'KR'
+        default: false
+      ui-corp-vn:
+        type: boolean
+        required: false
+        description: 'VN'
+        default: false
+      ui-env:
+        type: choice
+        required: true
+        description: 'Select Wingui environment'
+        options:
+          - dev
+          - qc
+          - prod
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      working-directory-config: './config'
     steps:
-      - name: Send mail
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          username: ${{ secrets.ZIONEX_CI_MAIL_USERNAME }}
-          password: ${{ secrets.ZIONEX_CI_MAIL_PASSWORD }}
-          subject: "GitHub Action Sending Mail Test"
-          to: hoonrho_lee@zionex.com
-          from: Zionex Release
-          body: This is test
+      - name: Set up yq
+        run: |
+          mkdir -p $HOME/.local/bin
+          echo "PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
+          wget -qO $HOME/.local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          chmod a+x $HOME/.local/bin/yq
+      - name: Set mp server max memory
+        working-directory: ${{ env.working-directory-config }}
+        run:
+          echo "kr=$(yq '.memory.kr.${{ inputs.ui-env }}' application.yaml" >> $GITHUB_OUTPUT
+          echo "vn=$(yq '.memory.vn.${{ inputs.ui-env }}' application.yaml" >> $GITHUB_OUTPUT
+        id: memory
+      - name: Check yq result
+        run: |
+          echo ${{ steps.memory.outputs.kr }}
+          echo ${{ steps.memory.outputs.vn }}

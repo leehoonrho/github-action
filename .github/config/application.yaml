@@ -1,0 +1,9 @@
+memory:
+  kr:
+    dev: 1
+    qc: 2
+    prod: 3
+  vn:
+    dev: 4
+    qc: 5
+    prod: 6
