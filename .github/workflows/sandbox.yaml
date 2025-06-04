@@ -39,8 +39,8 @@ jobs:
       - name: Set mp server max memory
         working-directory: ${{ env.working-directory-config }}
         run:
-          echo "kr=$(yq '.memory.kr.${{ inputs.ui-env }}' application.yaml" >> $GITHUB_OUTPUT
-          echo "vn=$(yq '.memory.vn.${{ inputs.ui-env }}' application.yaml" >> $GITHUB_OUTPUT
+          echo "kr=$(yq '.memory.kr.${{ inputs.ui-env }}' application.yaml)" >> $GITHUB_OUTPUT
+          echo "vn=$(yq '.memory.vn.${{ inputs.ui-env }}' application.yaml)" >> $GITHUB_OUTPUT
         id: memory
       - name: Check yq result
         run: |
